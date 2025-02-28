@@ -1,0 +1,59 @@
+import java.util.*;
+class Employee {
+    private String name;
+    private int age;
+    private double salary;
+    public Employee(String name, int age, double salary) {
+        this.name = name;
+        this.age = age;
+        this.salary = salary;
+    }
+    public String getName() {
+        return name;
+    }
+    public int getAge() {
+        return age;
+    }
+    public double getSalary() {
+        return salary;
+    }
+    public void display() {
+        System.out.println(name + " - Age: " + age + ", Salary: " + salary);
+    }
+}
+public class EmployeeSort {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the number of employees: ");
+        int numEmployees = scanner.nextInt();
+        scanner.nextLine();  // Consume newline
+        List<Employee> employees = new ArrayList<>();
+        for (int i = 0; i < numEmployees; i++) {
+            System.out.print("Enter name of employee " + (i + 1) + ": ");
+            String name = scanner.nextLine();
+            System.out.print("Enter age of employee " + (i + 1) + ": ");
+            int age = scanner.nextInt();
+            System.out.print("Enter salary of employee " + (i + 1) + ": ");
+            double salary = scanner.nextDouble();
+            scanner.nextLine();  // Consume newline
+            employees.add(new Employee(name, age, salary));
+        }
+        // Sorting by name
+        employees.sort(Comparator.comparing(Employee::getName));
+        System.out.println("\nSorted by Name:");
+        employees.forEach(Employee::display);
+        // Sorting by age
+        employees.sort(Comparator.comparingInt(Employee::getAge));
+        System.out.println("\nSorted by Age:");
+        employees.forEach(Employee::display);
+        // Sorting by salary (Descending order)
+        employees.sort(Comparator.comparingDouble(Employee::getSalary).reversed())
+        System.out.println("\nSorted by Salary:");
+        employees.forEach(Employee::display);
+        scanner.close();
+    }
+}
+
+
+
+
